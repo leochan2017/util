@@ -1,14 +1,59 @@
-// Author: Leo
-// Last update: 2020.07.15
-
 /** 获取当前浏览器UA信息 */
 function _getUA() {
   return typeof navigator !== 'undefined' && ((navigator && (navigator.userAgent || navigator.swuserAgent)) || '')
 }
 
-/** 获取当前是否钉钉环境 */
+/** 判断当前是否移动端 */
+export function isMb() {
+  return /Android|webOS|iPhone|iPod|BlackBerry/i.test(_getUA())
+}
+
+/** 获取当前是否钉钉H5环境 */
 export function isDD() {
   return /DingTalk/i.test(_getUA())
+}
+
+/** 通过 名字 + 下标 + 随机串生成的key，用于v-for */
+export function generateKey(name = '', index = '') {
+  return `key-${name}-${index}-${new Date().getTime().toString(36)}`
+}
+
+/**
+ * 生成 UUID
+ * @param {Number} len 指定长度
+ * @param {Number} radix 指定基数
+ */
+export function generateUuid(len, radix) {
+  var chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'.split('')
+
+  var uuid = []
+  var i = null
+
+  radix = radix || chars.length
+
+  if (len) {
+    // Compact form
+    for (i = 0; i < len; i++) {
+      uuid[i] = chars[0 | (Math.random() * radix)]
+    }
+  } else {
+    // rfc4122, version 4 form
+
+    var r // rfc4122 requires these characters
+
+    uuid[8] = uuid[13] = uuid[18] = uuid[23] = '-'
+
+    uuid[14] = '4' // Fill in random data.  At i==19 set the high bits of clock sequence as // per rfc4122, sec. 4.1.5
+
+    for (i = 0; i < 36; i++) {
+      if (!uuid[i]) {
+        r = 0 | (Math.random() * 16)
+        uuid[i] = chars[i == 19 ? (r & 0x3) | 0x8 : r]
+      }
+    }
+  }
+
+  return uuid.join('')
 }
 
 /** 格式化日期 */
@@ -117,14 +162,9 @@ export function throttle(method, delay = 2000, time = 1000) {
   }
 }
 
-/** 强赋值 */
+/** 强复制 */
 export function superCopy(obj) {
   return JSON.parse(JSON.stringify(obj))
-}
-
-/** 通过 名字 + 下标 + 随机串生成的key，用于v-for */
-export function generateKey(name = '', index = '') {
-  return `key-${name}-${index}-${new Date().getTime().toString(36)}`
 }
 
 /** 提取汉字 */
@@ -201,4 +241,4 @@ export function goToLarkLoginPage(appid) {
 // }
 
 // 为了让 import leoutil from 'leoutil' 生效
-export default { isDD, formatDateTime, timeStamp2Text, pollFunction, getLocation, calcLinearDistance, throttle, superCopy, generateKey, getChinese, byteLength, subStringByBytes, compare, goToLarkLoginPage }
+export default { isDD, formatDateTime, timeStamp2Text, pollFunction, getLocation, calcLinearDistance, throttle, superCopy, generateKey, getChinese, byteLength, subStringByBytes, compare, goToLarkLoginPage, isMb, generateUuid }
