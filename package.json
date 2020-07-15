@@ -1,17 +1,30 @@
 {
-  "name": "util",
-  "version": "0.0.1",
-  "description": "Public Class",
-  "main": "src/index.js",
-  "module": "src/index.js",
-  "repository": {
-    "type": "git",
-    "url": "git@github.com:leochan2017/util.git"
+  "name": "leoutil",
+  "version": "0.0.3",
+  "description": "Leo 公共工具库",
+  "main": "./dist/leoutil.min.js",
+  "module": "/src/index.js",
+  "scripts": {
+    "build": "webpack --config webpack.config.js"
   },
   "author": "Leo",
-  "license": "MIT",
+  "keywords": [
+    "uitls",
+    "leo"
+  ],
+  "license": "ISC",
   "bugs": {
     "url": "https://github.com/leochan2017/util/issues"
   },
-  "homepage": "https://github.com/leochan2017/util"
+  "homepage": "https://github.com/leochan2017/util",
+  "dependencies": {
+    "lodash": "^4.17.15",
+    "webpack": "^4.37.0"
+  },
+  "devDependencies": {
+    "webpack-cli": "^3.3.6",
+    "babel-loader": "^7.1.1",
+    "babel-core": "^6.22.1",
+    "uglifyjs-webpack-plugin": "^1.1.1"
+  }
 }
