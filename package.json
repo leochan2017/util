@@ -1,0 +1,17 @@
+{
+  "name": "util",
+  "version": "0.0.1",
+  "description": "Public Class",
+  "main": "src/index.js",
+  "module": "src/index.js",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:leochan2017/util.git"
+  },
+  "author": "Leo",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/leochan2017/util/issues"
+  },
+  "homepage": "https://github.com/leochan2017/util"
+}
