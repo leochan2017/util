@@ -2,7 +2,7 @@
 
 ![By Leo](https://img.shields.io/badge/Powered_by-Leo-red.svg?style=flat)
 ![npm](https://img.shields.io/npm/dt/util)
-![GitHub file size in bytes](https://img.shields.io/github/size/leochan2017/util/dist/util.min.js)
+![GitHub file size in bytes](https://img.shields.io/github/size/leochan2017/util/dist/leoutil.min.js)
 ![GitHub last commit](https://img.shields.io/github/last-commit/leochan2017/util.svg)
 ![GitHub package.json version](https://img.shields.io/github/package-json/v/leochan2017/util)
 ![Hex.pm](https://img.shields.io/hexpm/l/plug.svg)
@@ -39,12 +39,6 @@ npm install leoutil --save
 yarn add leoutil
 ```
 
-然后
-
-```js
-import leoutil from 'leoutil'
-```
-
 1.3 如果你是 requirejs 环境
 
 ```js
@@ -56,13 +50,20 @@ requirejs(['./dist/leoutil.min.js'], function (res) {
 ### 2. 使用
 
 ```js
+import leoutil from 'leoutil'
 console.log(leoutil.isDD())
+```
+
+或者
+
+```js
+import { isDD } from 'leoutil'
+console.log(isDD())
 ```
 
 ## :bookmark_tabs: AIP 文档
 
 ### leoutil.isDD()
-
 返回当前是否钉钉环境; true: 是, false: 否
 
 ## :couple: 谁在使用
