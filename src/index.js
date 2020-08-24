@@ -236,9 +236,33 @@ export function goToLarkLoginPage(appid) {
   location.href = url
 }
 
+export function generateGreeting() {
+  const day = new Date()
+  const hr = day.getHours()
+  let msg = '祝你有个美好的心情！'
+  if (hr >= 0 && hr <= 4) {
+    msg = '深夜了，注意身体哦...'
+  } else if (hr >= 4 && hr < 7) {
+    msg = '清晨好，起得真早呀...'
+  } else if (hr >= 7 && hr < 12) {
+    msg = '今天又是元気满满的一天呢！'
+  } else if (hr >= 12 && hr <= 13) {
+    msg = '午饭时间，别太为难自己的肚子哦！'
+  } else if (hr >= 13 && hr <= 17) {
+    msg = '下午好，记得多喝一杯水哦！'
+  } else if (hr >= 17 && hr <= 18) {
+    msg = '进入傍晚了，不想去散散步吗？'
+  } else if (hr >= 18 && hr <= 19) {
+    msg = '我大概在吃晚饭了，你呢？'
+  } else if (hr >= 19 && hr <= 23) {
+    msg = '辛苦了，大晚上还在加班！'
+  }
+  return msg
+}
+
 // export function otherAIP() {
 //   return xxx
 // }
 
 // 为了让 import leoutil from 'leoutil' 生效
-export default { isDD, formatDateTime, timeStamp2Text, pollFunction, getLocation, calcLinearDistance, throttle, superCopy, generateKey, getChinese, byteLength, subStringByBytes, compare, goToLarkLoginPage, isMb, generateUuid }
+export default { isDD, formatDateTime, timeStamp2Text, pollFunction, getLocation, calcLinearDistance, throttle, superCopy, generateKey, getChinese, byteLength, subStringByBytes, compare, goToLarkLoginPage, isMb, generateUuid, generateGreeting }

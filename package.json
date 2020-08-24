@@ -1,6 +1,6 @@
 {
   "name": "leoutil",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Leo 公共工具库",
   "main": "./dist/leoutil.min.js",
   "module": "/src/index.js",
