@@ -58,6 +58,7 @@ export function generateUuid(len, radix) {
 
 /** 格式化日期 */
 export function formatDateTime(timeObj, fmt) {
+  if (!timeObj) return ''
   var o = {
     'M+': timeObj.getMonth() + 1, //月份
     'd+': timeObj.getDate(), //日
