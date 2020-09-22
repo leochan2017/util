@@ -225,10 +225,11 @@ export function compare(property) {
 }
 
 /** 跳转去飞书扫码页 */
-export function goToLarkLoginPage(appid) {
+export function goToLarkLoginPage(appid, state) {
   const { protocol, host, pathname } = location
   const redirect_uri = encodeURIComponent(`${protocol}//${host}${pathname}`)
-  const url = `https://open.feishu.cn/open-apis/authen/v1/index?redirect_uri=${redirect_uri}&app_id=${appid}`
+  let url = `https://open.feishu.cn/open-apis/authen/v1/index?redirect_uri=${redirect_uri}&app_id=${appid}`
+  if (state) url += `&state=${state}`
 
   // 子龙给的旧接口
   // const url = `https://open.feishu.cn/connect/qrconnect/page/sso/?redirect_uri=${redirect_uri}&app_id=${appid}`
