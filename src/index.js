@@ -262,9 +262,28 @@ export function generateGreeting() {
   return msg
 }
 
+/** 
+ * 金额处理
+ * 第一位value是必传的
+ * 第二位num是保留小数位，默认保留两位小数
+ */
+export function formatMoney(value, num) {
+  num = num > 0 && num <= 20 ? num : 2
+  value = parseFloat((value + '').replace(/[^\d\.-]/g, '')).toFixed(num) + '' // 将金额转成比如 123.45的字符串
+  var valueArr = value.split('.')[0].split('').reverse() // 将字符串的数变成数组
+  const valueFloat = value.split('.')[1] // 取到 小数点后的值
+  let valueString = ''
+  for (let i = 0; i < valueArr.length; i++) {
+    // 循环 取数值并在每三位加个','
+    valueString += valueArr[i] + ((i + 1) % 3 == 0 && (i + 1) != valueArr.length ? ',' : '')
+  }
+  const money = valueString.split('').reverse().join('') + '.' + valueFloat // 拼接上小数位
+  return money
+}
+
 // export function otherAIP() {
 //   return xxx
 // }
 
 // 为了让 import leoutil from 'leoutil' 生效
-export default { isDD, formatDateTime, timeStamp2Text, pollFunction, getLocation, calcLinearDistance, throttle, superCopy, generateKey, getChinese, byteLength, subStringByBytes, compare, goToLarkLoginPage, isMb, generateUuid, generateGreeting }
+export default { isDD, formatDateTime, timeStamp2Text, pollFunction, getLocation, calcLinearDistance, throttle, superCopy, generateKey, getChinese, byteLength, subStringByBytes, compare, goToLarkLoginPage, isMb, generateUuid, generateGreeting, formatMoney }
