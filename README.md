@@ -7,7 +7,7 @@
 ![GitHub package.json version](https://img.shields.io/github/package-json/v/leochan2017/util)
 ![Hex.pm](https://img.shields.io/hexpm/l/plug.svg)
 
-Leo 公共工具库
+公共工具库 leoutil
 
 ## :open_file_folder: 目录介绍
 
