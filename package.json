@@ -1,6 +1,6 @@
 {
   "name": "leoutil",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "Leo 公共工具库",
   "main": "./dist/leoutil.min.js",
   "module": "/src/index.js",
@@ -22,10 +22,10 @@
     "webpack": "^4.37.0"
   },
   "devDependencies": {
-    "webpack-cli": "^3.3.6",
-    "babel-loader": "^7.1.1",
     "babel-core": "^6.22.1",
-    "uglifyjs-webpack-plugin": "^1.1.1"
+    "babel-loader": "^7.1.1",
+    "uglifyjs-webpack-plugin": "^1.1.1",
+    "webpack-cli": "^3.3.6"
   },
   "repository": {
     "type": "git",
