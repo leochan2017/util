@@ -298,9 +298,21 @@ export function formatMoney (value, num) {
   return money
 }
 
+// hex -> rgb
+export const hexToRgb = (hex) => {
+  return 'rgb(' + parseInt('0x' + hex.slice(1, 3)) + ',' + parseInt('0x' + hex.slice(3, 5))
+    + ',' + parseInt('0x' + hex.slice(5, 7)) + ')'
+}
+
+// hex -> rgba
+export const hexToRgba = (hex, opacity) => {
+  return 'rgba(' + parseInt('0x' + hex.slice(1, 3)) + ',' + parseInt('0x' + hex.slice(3, 5)) + ','
+    + parseInt('0x' + hex.slice(5, 7)) + ',' + opacity + ')'
+}
+
 // export function otherAIP() {
 //   return xxx
 // }
 
 // 为了让 import leoutil from 'leoutil' 生效
-export default { isDD, formatDateTime, timeStamp2Text, pollFunction, getLocation, calcLinearDistance, throttle, superCopy, deepCopy, generateKey, getChinese, byteLength, subStringByBytes, compare, goToLarkLoginPage, isMb, generateUuid, generateGreeting, formatMoney }
+export default { isDD, formatDateTime, timeStamp2Text, pollFunction, getLocation, calcLinearDistance, throttle, superCopy, deepCopy, generateKey, getChinese, byteLength, subStringByBytes, compare, goToLarkLoginPage, isMb, generateUuid, generateGreeting, formatMoney, hexToRgb, hexToRgba }
