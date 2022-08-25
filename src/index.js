@@ -1,20 +1,20 @@
 /** 获取当前浏览器UA信息 */
-function _getUA() {
+function _getUA () {
   return typeof navigator !== 'undefined' && ((navigator && (navigator.userAgent || navigator.swuserAgent)) || '')
 }
 
 /** 判断当前是否移动端 */
-export function isMb() {
+export function isMb () {
   return /Android|webOS|iPhone|iPod|BlackBerry/i.test(_getUA())
 }
 
 /** 获取当前是否钉钉H5环境 */
-export function isDD() {
+export function isDD () {
   return /DingTalk/i.test(_getUA())
 }
 
 /** 通过 名字 + 下标 + 随机串生成的key，用于v-for */
-export function generateKey(name = '', index = '') {
+export function generateKey (name = '', index = '') {
   return `key-${name}-${index}-${new Date().getTime().toString(36)}`
 }
 
@@ -23,7 +23,7 @@ export function generateKey(name = '', index = '') {
  * @param {Number} len 指定长度
  * @param {Number} radix 指定基数
  */
-export function generateUuid(len, radix) {
+export function generateUuid (len, radix) {
   var chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'.split('')
 
   var uuid = []
@@ -57,7 +57,7 @@ export function generateUuid(len, radix) {
 }
 
 /** 格式化日期 */
-export function formatDateTime(timeObj, fmt) {
+export function formatDateTime (timeObj, fmt) {
   if (!timeObj) return ''
   var o = {
     'M+': timeObj.getMonth() + 1, //月份
@@ -75,7 +75,7 @@ export function formatDateTime(timeObj, fmt) {
 }
 
 /** 时间戳转日期 */
-export function timeStamp2Text(timeStamp, format = 'yyyy-MM-dd hh:mm') {
+export function timeStamp2Text (timeStamp, format = 'yyyy-MM-dd hh:mm') {
   if (!timeStamp || typeof timeStamp !== 'number') return ''
   return formatDateTime(new Date(timeStamp), format)
 }
@@ -90,7 +90,7 @@ export function timeStamp2Text(timeStamp, format = 'yyyy-MM-dd hh:mm') {
  * @param {Number} timeout (运行)超时次数, 默认50
  *
  */
-export function pollFunction(conditions, interval = 200, timeout = 50) {
+export function pollFunction (conditions, interval = 200, timeout = 50) {
   return new Promise((resolve, reject) => {
     let num = 0
     let t = setInterval(() => {
@@ -108,7 +108,7 @@ export function pollFunction(conditions, interval = 200, timeout = 50) {
 }
 
 /** 获取当前经纬度 */
-export function getLocation(cb, http) {
+export function getLocation (cb, http) {
   // async
   navigator.geolocation.getCurrentPosition(res => {
     // console.log('res', res)
@@ -126,7 +126,7 @@ export function getLocation(cb, http) {
  * @param lat2 终点纬度
  * @return  直线距离，以米为单位
  */
-export function calcLinearDistance(lng1, lat1, lng2, lat2) {
+export function calcLinearDistance (lng1, lat1, lng2, lat2) {
   const EARTH_RADIUS = 6378137
 
   const rad = d => {
@@ -144,7 +144,7 @@ export function calcLinearDistance(lng1, lat1, lng2, lat2) {
 }
 
 /** 节流 */
-export function throttle(method, delay = 2000, time = 1000) {
+export function throttle (method, delay = 2000, time = 1000) {
   var timeout,
     startTime = +new Date()
   return function () {
@@ -164,12 +164,29 @@ export function throttle(method, delay = 2000, time = 1000) {
 }
 
 /** 强复制 */
-export function superCopy(obj) {
+export function superCopy (obj) {
   return JSON.parse(JSON.stringify(obj))
 }
 
+/** 能复制方法的深拷贝 */
+export function deepCopy (obj) {
+  if (!obj) return null
+  const result = Array.isArray(obj) ? [] : {}
+  for (const key in obj) {
+    if (obj.hasOwnProperty(key)) {
+      if (typeof obj[key] === 'object') {
+        // Copy myself if current value is object
+        result[key] = deepCopy(obj[key])
+      } else {
+        result[key] = obj[key]
+      }
+    }
+  }
+  return result
+}
+
 /** 提取汉字 */
-export function getChinese(strValue) {
+export function getChinese (strValue) {
   if (strValue !== null && strValue !== '') {
     const reg = /[\u4e00-\u9fa5]/g
     return strValue.match(reg).join('')
@@ -183,7 +200,7 @@ export function getChinese(strValue) {
  * @param bytes 字节数
  * @returns
  */
-export function byteLength(str) {
+export function byteLength (str) {
   let len = 0
   for (let i = 0; i < str.length; i++) {
     // UTF8编码一个中文按3个字节算（GBK编码一个中文按2个字节）
@@ -198,7 +215,7 @@ export function byteLength(str) {
  * @param bytes 字节数
  * @return s
  */
-export function subStringByBytes(str, bytes) {
+export function subStringByBytes (str, bytes) {
   let len = 0
   for (let i = 0; i < str.length; i++) {
     // UTF8编码一个中文按3个字节算（GBK编码一个中文按2个字节
@@ -215,7 +232,7 @@ export function subStringByBytes(str, bytes) {
  * @param {Object} property 传入对象属性
  * 示例: arr = arr.sort(Util.compare('count'))
  */
-export function compare(property) {
+export function compare (property) {
   return function (obj1, obj2) {
     const value1 = obj1[property]
     const value2 = obj2[property]
@@ -225,7 +242,7 @@ export function compare(property) {
 }
 
 /** 跳转去飞书扫码页 */
-export function goToLarkLoginPage(appid, state) {
+export function goToLarkLoginPage (appid, state) {
   const { protocol, host, pathname } = location
   const redirect_uri = encodeURIComponent(`${protocol}//${host}${pathname}`)
   let url = `https://open.feishu.cn/open-apis/authen/v1/index?redirect_uri=${redirect_uri}&app_id=${appid}`
@@ -238,7 +255,7 @@ export function goToLarkLoginPage(appid, state) {
   location.href = url
 }
 
-export function generateGreeting() {
+export function generateGreeting () {
   const day = new Date()
   const hr = day.getHours()
   let msg = '祝你有个美好的心情！'
@@ -267,7 +284,7 @@ export function generateGreeting() {
  * 第一位value是必传的
  * 第二位num是保留小数位，默认保留两位小数
  */
-export function formatMoney(value, num) {
+export function formatMoney (value, num) {
   num = num > 0 && num <= 20 ? num : 2
   value = parseFloat((value + '').replace(/[^\d\.-]/g, '')).toFixed(num) + '' // 将金额转成比如 123.45的字符串
   var valueArr = value.split('.')[0].split('').reverse() // 将字符串的数变成数组
@@ -286,4 +303,4 @@ export function formatMoney(value, num) {
 // }
 
 // 为了让 import leoutil from 'leoutil' 生效
-export default { isDD, formatDateTime, timeStamp2Text, pollFunction, getLocation, calcLinearDistance, throttle, superCopy, generateKey, getChinese, byteLength, subStringByBytes, compare, goToLarkLoginPage, isMb, generateUuid, generateGreeting, formatMoney }
+export default { isDD, formatDateTime, timeStamp2Text, pollFunction, getLocation, calcLinearDistance, throttle, superCopy, deepCopy, generateKey, getChinese, byteLength, subStringByBytes, compare, goToLarkLoginPage, isMb, generateUuid, generateGreeting, formatMoney }
